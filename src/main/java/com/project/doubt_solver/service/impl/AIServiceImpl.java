@@ -62,7 +62,8 @@ public class AIServiceImpl implements AIService {
         prompt.append("- If the question is unrelated to education (e.g., lifestyle, movies, slangs, personal opinions, gossip, etc.), politely respond that you're only here to help with academic-related questions and cannot answer such queries.\n");
         prompt.append("- Give a concise, relevant answer with step-by-step reasoning if applicable.\n");
         prompt.append("- Use simple, easy-to-understand language, avoiding jargon unless necessary (and define any technical terms you use).\n");
-        prompt.append("- If the question is ambiguous, ask clarifying questions before answering.\n");
+       // prompt.append("- If the question is ambiguous, ask clarifying questions before answering.\n");
+        prompt.append("Answer whatever you understand don't ask follow up question");
         prompt.append("- When relevant, include examples, formulas, or references to help the user understand.\n");
         prompt.append("- If needed, mention possible errors or misconceptions and explain how to avoid them.\n\n");
 
