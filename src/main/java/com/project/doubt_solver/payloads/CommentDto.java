@@ -10,6 +10,16 @@ public class CommentDto {
     private Set<Integer> upvotes=new HashSet<>();
     private LocalDateTime createdAt;
 
+    private UserDto user;
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
+
     public CommentDto(String content) {
         this.content = content;
     }

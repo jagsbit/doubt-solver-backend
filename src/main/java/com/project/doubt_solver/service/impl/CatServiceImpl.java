@@ -27,7 +27,7 @@ public class CatServiceImpl implements CatService {
 
     @Override
     public List<CatDto> getAllCategory() {
-        List<Category> categoryList=catRepo.findAll();
+        List<Category> categoryList=catRepo.findAllCategoriesWithOthersLast();
         List<CatDto> catDtoList=categoryList.stream()
                 .map((category -> modelMapper.map(category,CatDto.class)))
                 .toList();
