@@ -24,7 +24,28 @@ public class Users {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
-    // Getters and Setters
+    private int doubtCount;
+
+    public int getDoubtCount() {
+        return doubtCount;
+    }
+
+    public void setDoubtCount(int doubtCount) {
+        this.doubtCount = doubtCount;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'normal'")
+    private String role ;
+
+// Getters and Setters
 
     public int getUserId() {
         return userId;

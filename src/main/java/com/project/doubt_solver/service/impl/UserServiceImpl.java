@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,12 +23,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ModelMapper modelMapper;
 
+
+
     @Override
     public UserDto setUser(UserDto userDto) {
         // mapping UserDto-Users
         Users user=modelMapper.map(userDto,Users.class);
         // save in database
         Users savedUser=userRepo.save(user);
+
         return modelMapper.map(savedUser,UserDto.class);
     }
 

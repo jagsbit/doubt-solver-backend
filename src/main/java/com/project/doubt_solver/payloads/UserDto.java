@@ -29,6 +29,27 @@ public class UserDto {
 
     private LocalDateTime createdAt;
 
+    private int doubtCount;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    private String role;
+
+
+    public int getDoubtCount() {
+        return doubtCount;
+    }
+
+    public void setDoubtCount(int doubtCount) {
+        this.doubtCount = doubtCount;
+    }
+
     public int getUserId() {
         return userId;
     }

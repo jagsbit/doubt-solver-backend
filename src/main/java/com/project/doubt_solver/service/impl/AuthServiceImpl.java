@@ -29,6 +29,8 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JWTService jwtService;
 
+
+
     private   BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(12);
     @Override
     public UserDto register(UserDto userDto) {

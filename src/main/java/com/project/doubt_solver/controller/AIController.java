@@ -1,5 +1,6 @@
 package com.project.doubt_solver.controller;
 
+import com.project.doubt_solver.payloads.QuestionDto;
 import com.project.doubt_solver.payloads.QuizDto;
 import com.project.doubt_solver.service.impl.AIServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,12 @@ public class AIController {
     @Autowired
     private AIServiceImpl aiService;
 
+
+
     @PostMapping("")
-    public ResponseEntity<String> getAnswer(@RequestBody String question){
-        String answer=aiService.getAnswer(question);
+    public ResponseEntity<String> getAnswer(@RequestBody QuestionDto questionDto){
+
+        String answer=aiService.getAnswer(questionDto);
         return new ResponseEntity<>(answer, HttpStatus.OK);
     }
 

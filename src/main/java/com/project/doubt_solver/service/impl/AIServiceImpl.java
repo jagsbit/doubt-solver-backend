@@ -1,15 +1,17 @@
 package com.project.doubt_solver.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.doubt_solver.model.Users;
 import com.project.doubt_solver.payloads.GeminiResponse;
+import com.project.doubt_solver.payloads.QuestionDto;
 import com.project.doubt_solver.payloads.QuizDto;
+import com.project.doubt_solver.repository.UserRepository;
 import com.project.doubt_solver.service.AIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +27,21 @@ public class AIServiceImpl implements AIService {
     private ObjectMapper objectMapper;
     private final WebClient webClient;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public AIServiceImpl(WebClient.Builder webClientBuilder){
         this.webClient=webClientBuilder.build();
     }
     @Override
-    public String getAnswer(String question) {
+    public String getAnswer(QuestionDto questionDto) {
+
+        String email=questionDto.getEmail();
+        String question=questionDto.getQuestion();
+
+        Users user=userRepository.findByEmail(email);
+
+        if(user.getDoubtCount()>=5 && user.getRole().equals("normal")) return "You’ve exceeded your free usage limit for today. Please upgrade to a standard subscription to continue.";
 
         // check question and return
         if(!checkQuestion(question)) return "Your doubt is not related to Academics";
@@ -52,6 +64,8 @@ public class AIServiceImpl implements AIService {
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+         user.setDoubtCount(user.getDoubtCount()+1);
+         userRepository.save(user);
         return extractTextFromResponse(response);
     }
 
