@@ -41,7 +41,7 @@ public class AIServiceImpl implements AIService {
 
         Users user=userRepository.findByEmail(email);
 
-        if(user.getDoubtCount()>=20 && user.getRole().equals("normal")) return "You’ve exceeded your free usage limit for today. Please upgrade to a standard subscription to continue.";
+        if(user.getDoubtCount()>=100 && user.getRole().equals("normal")) return "You’ve exceeded your free usage limit for today. Please upgrade to a standard subscription to continue.";
 
         // check question and return
         if(!checkQuestion(question)) return "Your doubt is not related to Academics";
